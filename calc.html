@@ -43,6 +43,22 @@
                         container.appendChild(button);
                     }
                 }
+
+                function updateDisplay() {
+                    let displayText = current_num;
+                    const num = parseFloat(displayText);
+
+                    if (!isNaN(num)) {
+                        if (Math.abs(num) >= 1000000000 || (Math.abs(num) < 0.000001 && num !== 0)) {
+                            displayText = num.toExponential(6);
+                        } else if (displayText.length > 12) {
+                            displayText = num.toPrecision(10).replace(/\.?0+$/, '');
+                        }
+                    }
+
+                    display.textContent = displayText;
+                }
+
                 function handleButtonClick(value) {
                     console.log("PRESSED:", value);
                     switch (value) {
@@ -51,6 +67,7 @@
                             break;
                         case '.':
                             decimal();
+                            break;
                         case '=':
                             calculate();
                             break;
@@ -65,7 +82,6 @@
                             break;
                         default:
                             addNumber(value);
-
                     }
                 }
                 function calculate() {
@@ -100,9 +116,11 @@
                     just_calculated = true;
                     updateDisplay();
                     console.log("RESULT:", current_num);
-
                 }
                 function handleOperator(op) {
+                    console.log("handleOperator called with:", op);
+                    console.log("State before:", { prev_num, current_num, cur_operator, waiting_for_second_operand, just_calculated });
+
                     if (just_calculated) {
                         prev_num = current_num;
                         cur_operator = op;
@@ -110,6 +128,7 @@
                         waiting_for_second_operand = true;
                         return;
                     }
+
                     if (!waiting_for_second_operand && prev_num && cur_operator) {
                         calculate();
                         prev_num = current_num;
@@ -120,6 +139,8 @@
                         cur_operator = op;
                         waiting_for_second_operand = true;
                     }
+
+                    console.log("State after:", { prev_num, current_num, cur_operator, waiting_for_second_operand });
                 }
                 function addNumber(num) {
                     console.log("PREV:", prev_num, "CUR:", current_num, "OP:", cur_operator, "WAITING:", waiting_for_second_operand);
@@ -163,22 +184,8 @@
                     }
                     updateDisplay();
                 }
-                function updateDisplay() {
-                    let displayText = current_num;
-                    const num = parseFloat(displayText);
 
-                    if (!isNaN(num)) {
-                        // Only use scientific notation for very large or very small numbers
-                        if (Math.abs(num) >= 100000000000 || (Math.abs(num) < 0.000001 && num !== 0)) {
-                            displayText = num.toExponential(6);
-                        } else if (displayText.length > 12) {
-                            // For numbers that fit in the normal range but have long decimals, round them
-                            displayText = num.toPrecision(10).replace(/\.?0+$/, '');
-                        }
-                    }
-                    display.textContent = displayText;
-                }
-
+                updateDisplay();
             </script>
         </div>
     </div>
