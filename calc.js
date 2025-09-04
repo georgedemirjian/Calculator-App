@@ -36,7 +36,7 @@ function updateDisplay() {
     const num = parseFloat(displayText);
 
     if (!isNaN(num)) {
-        if (Math.abs(num) >= 1000000000 || (Math.abs(num) < 0.000001 && num !== 0)) {
+        if (Math.abs(num) >= 10000000 || (Math.abs(num) < 0.000001 && num !== 0)) {
             displayText = num.toExponential(6);
         } else if (displayText.length > 12) {
             displayText = num.toPrecision(10).replace(/\.?0+$/, '');

@@ -1,10 +1,10 @@
 #container {
-    height: 720px;
-    width: 600px;
-    border: solid 10px;
-    padding: 10px;
+    height: 600px;
+    width: 500px;
+    border: solid 20px;
+    padding: 20px;
     border-radius: 5%;
-    background-color: aqua;
+    background-color: rgb(71, 124, 142);
     display: grid;
 }
 
@@ -17,25 +17,33 @@
 
 .display {
     grid-column: span 4;
-    height: 100px;
-    width: 580px;
     border: solid;
     margin: 8px;
-    border-radius: 1%;
-    background-color: rgb(213, 244, 244);
+    border-radius: 15px;
+    background-color: rgb(162, 225, 225);
     text-align: right;
+    align-items: center;
     justify-content: flex-end;
-    font-size: 80px;
+    font-size: 70px;
     display: flex;
     overflow: hidden;
     white-space: nowrap;
     word-break: break-all;
+    margin-bottom: 10px;
 }
 
 .button {
     align-items: center;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
     font-size: 50px;
-    background-color: rgb(190, 238, 238);
+    background-color: rgb(147, 217, 217);
 }
+
+.button:hover {
+            background-color: #699aad;
+        }
+        
+        .button:active {
+            background-color: #364a55;
+        }
