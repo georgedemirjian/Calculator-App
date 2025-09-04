@@ -1,0 +1,40 @@
+#container {
+    height: 720px;
+    width: 600px;
+    border: solid 10px;
+    padding: 10px;
+    border-radius: 5%;
+    background-color: aqua;
+    display: grid;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    grid-column: span 4;
+    height: 100px;
+    width: 580px;
+    border: solid;
+    margin: 8px;
+    border-radius: 1%;
+    background-color: rgb(213, 244, 244);
+    text-align: right;
+    justify-content: flex-end;
+    font-size: 80px;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+.button {
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 50px;
+    background-color: rgb(190, 238, 238);
+}
